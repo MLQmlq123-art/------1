@@ -1,18 +1,18 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+ï»¿#define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<string.h>
 #define max 20
-int print()//²Ëµ¥
+int print()//èœå•
 {
 	int x;
-	printf("1.²é¿´ËùÓĞ·¿¼ä\n");
-	printf("2.°ìÀíÈë×¡\n");
-	printf("3.°ìÀíÍË·¿\n");
-	printf("4.²éÑ¯·¿¼äĞÅÏ¢\n");
-	printf("5.²éÑ¯¿Í»§ĞÅÏ¢\n");
-	printf("6.ÏÔÊ¾¿ÕÏĞ·¿¼ä\n");
-	printf("7.±£´æÊı¾İ\n");
-	printf("8.ÍË³öÏµÍ³\n");
+	printf("1.æŸ¥çœ‹æ‰€æœ‰æˆ¿é—´\n");
+	printf("2.åŠç†å…¥ä½\n");
+	printf("3.åŠç†é€€æˆ¿\n");
+	printf("4.æŸ¥è¯¢æˆ¿é—´ä¿¡æ¯\n");
+	printf("5.æŸ¥è¯¢å®¢æˆ·ä¿¡æ¯\n");
+	printf("6.æ˜¾ç¤ºç©ºé—²æˆ¿é—´\n");
+	printf("7.ä¿å­˜æ•°æ®\n");
+	printf("8.é€€å‡ºç³»ç»Ÿ\n");
 	scanf("%d", &x);
 	return x;
 }
@@ -31,7 +31,7 @@ typedef struct
 }custome;
 custome guest[max];
 room rooms[max];
-void intirooms()//¸øÃ¿¸ö·¿¼ä³õÊ¼»¯
+void intirooms()//ç»™æ¯ä¸ªæˆ¿é—´åˆå§‹åŒ–
 {
 	for (int i = 0; i < max; i++)
 	{
@@ -49,50 +49,50 @@ void intirooms()//¸øÃ¿¸ö·¿¼ä³õÊ¼»¯
 		}
 	}
 }
-void transfor(int a)//¶Ô·¿¼äÊÇ·ñÓĞÈËstate(0ºÍ1)Ê¶±ğ
+void transfor(int a)//å¯¹æˆ¿é—´æ˜¯å¦æœ‰äººstate(0å’Œ1)è¯†åˆ«
 {
 	if (a == 1)
 	{
-		printf("ÒÑÈë×¡\n");
+		printf("å·²å…¥ä½\n");
 	}
 	else
 	{
-		printf("¿ÕÏĞ\n");
+		printf("ç©ºé—²\n");
 	}
 }
-void checkrooms()//²é¿´ËùÓĞ·¿¼ä
+void checkrooms()//æŸ¥çœ‹æ‰€æœ‰æˆ¿é—´
 {
 	for (int i = 0; i < max; i++)
 	{
-		printf("·¿¼äºÅ£º%d\nÀàĞÍÊÇ%dÈË·¿\n¼Û¸ñ£º%d\n", rooms[i].id, rooms[i].type, rooms[i].price);
+		printf("æˆ¿é—´å·ï¼š%d\nç±»å‹æ˜¯%däººæˆ¿\nä»·æ ¼ï¼š%d\n", rooms[i].id, rooms[i].type, rooms[i].price);
 		transfor(rooms[i].state);
 	}
 }
 
-int check_in()//°ìÀíÈë×¡
+int check_in()//åŠç†å…¥ä½
 {
 	int i,j;
     input_room:
-	printf("ÇëÊäÈëÈë×¡·¿¼äºÅ:");
+	printf("è¯·è¾“å…¥å…¥ä½æˆ¿é—´å·:");
 	scanf("%d", &i);
 	i -= 101;
 	if (rooms[i].state == 0 && i < max && i >= 0)
 	{
 		rooms[i].state = 1;
-		printf("ÇëÊäÈëÄúµÄÊÖ»úºÅÂëºóËÄÎ»\n");
+		printf("è¯·è¾“å…¥æ‚¨çš„æ‰‹æœºå·ç åå››ä½\n");
 		scanf("%d", &guest[i].phone);
-		printf("ÇëÊäÈëÄúµÄÄêÁä\n");
+		printf("è¯·è¾“å…¥æ‚¨çš„å¹´é¾„\n");
 		scanf("%d", &guest[i].year);
-		printf("ÇëÊäÈëÄúµÄÃû×Ö\n");
+		printf("è¯·è¾“å…¥æ‚¨çš„åå­—\n");
 		scanf("%s", guest[i].name);
-		printf("Èë×¡³É¹¦\n");
+		printf("å…¥ä½æˆåŠŸ\n");
 		return 1;
 	}
 	else
 	{
-		printf("Èë×¡Ê§°Ü\n");
-		printf("1.ÔÙ´ÎÑ¡Ôñ\n");
-		printf("2.ÍË³öÏµÍ³\n");
+		printf("å…¥ä½å¤±è´¥\n");
+		printf("1.å†æ¬¡é€‰æ‹©\n");
+		printf("2.é€€å‡ºç³»ç»Ÿ\n");
 		scanf("%d", &j);
 		if (j == 1)
 		{
@@ -100,66 +100,66 @@ int check_in()//°ìÀíÈë×¡
 		}
 		else
 		{
-			printf("ÒÑÍË³ö\n");
+			printf("å·²é€€å‡º\n");
 			return 0;
 		}
 	}
 }
-void checkout()//ÍË·¿
+void checkout()//é€€æˆ¿
 {
 	int x;
 	char s[50];
     one_:
-	printf("ÇëÊäÈëÒªÍË·¿¼äºÅ:");
+	printf("è¯·è¾“å…¥è¦é€€æˆ¿é—´å·:");
 	scanf("%d", &x);
 	x -= 101;
-	printf("ÇëÊäÈëµÇ¼ÇÈËÃû×Ö:");
+	printf("è¯·è¾“å…¥ç™»è®°äººåå­—:");
 	scanf("%s", s);
 	if (rooms[x].state == 1 && strcmp(guest[x].name, s) == 0&&(x< max&&x>= 0))
 	{
-		printf("ÑéÖ¤³É¹¦\n");
+		printf("éªŒè¯æˆåŠŸ\n");
 		rooms[x].state = 0;
 		memset(guest[x].name, 0, sizeof(guest[x].name));
-		printf("ÍË·¿³É¹¦\n");
+		printf("é€€æˆ¿æˆåŠŸ\n");
 	}
 	else
 	{
-		printf("ÑéÖ¤Ê§°Ü,ÇëÖØĞÂÊäÈë\n");
+		printf("éªŒè¯å¤±è´¥,è¯·é‡æ–°è¾“å…¥\n");
 		goto one_;
 	}
 }
-void check_information()//²é¿´·¿¼äĞÅÏ¢
+void check_information()//æŸ¥çœ‹æˆ¿é—´ä¿¡æ¯
 {
 	int x;
     next_:
-	printf("ÇëÊäÈëÒª²é¿´·¿¼äºÅ:");
+	printf("è¯·è¾“å…¥è¦æŸ¥çœ‹æˆ¿é—´å·:");
 	scanf("%d", &x);
 	x -= 101;
 	if (x < max && x >= 0)
 	{
-		printf("·¿¼äºÅ:%d\n ·¿¼äÀàĞÍ:%d\n ·¿¼ä¼Û¸ñ:%d\n", rooms[x].id, rooms[x].type, rooms[x].price);
+		printf("æˆ¿é—´å·:%d\n æˆ¿é—´ç±»å‹:%d\n æˆ¿é—´ä»·æ ¼:%d\n", rooms[x].id, rooms[x].type, rooms[x].price);
 		transfor(rooms[x].state);
 	}
 	else
 	{
-		printf("ÊäÈë´íÎó,ÇëÖØĞÂÊäÈë\n");
+		printf("è¾“å…¥é”™è¯¯,è¯·é‡æ–°è¾“å…¥\n");
 		goto next_;
 	}
 }
-void check_guest()//²é¿´¿Í»§ĞÅÏ¢
+void check_guest()//æŸ¥çœ‹å®¢æˆ·ä¿¡æ¯
 {
 	int x;
     next_:
-	printf("ÇëÊäÈë·¿¼äºÅ:");
+	printf("è¯·è¾“å…¥æˆ¿é—´å·:");
 	scanf("%d", &x);
 	x -= 101;
 	if (x < max && x >= 0)
 	{
-		printf("¿Í»§Ãû:%s\n ¿Í»§ÄêÁä:%d\n ¿Í»§ÊÖ»úºÅºóËÄÎ»:%d\n", guest[x].name, guest[x].year, guest[x].phone);
+		printf("å®¢æˆ·å:%s\n å®¢æˆ·å¹´é¾„:%d\n å®¢æˆ·æ‰‹æœºå·åå››ä½:%d\n", guest[x].name, guest[x].year, guest[x].phone);
 	}
 	else
 	{
-		printf("ÊäÈë´íÎó,ÇëÖØĞÂÊäÈë\n");
+		printf("è¾“å…¥é”™è¯¯,è¯·é‡æ–°è¾“å…¥\n");
 		goto next_;
 	}
 }
@@ -169,7 +169,7 @@ void displayroom()
 	{
 		if (rooms[i].state == 0)
 		{
-			printf("[%dÎª¿ÕÏĞ]\n ", i + 101);
+			printf("[%dä¸ºç©ºé—²]\n ", i + 101);
 		}
 	}
 }
@@ -179,7 +179,7 @@ void saveRoom()
 
 	if (fp == NULL)
 	{
-		printf("ÎÄ¼ş´ò¿ªÊ§°Ü\n");
+		printf("æ–‡ä»¶æ‰“å¼€å¤±è´¥\n");
 		return;
 	}
 	for (int i = 0; i < max; i++)
@@ -191,14 +191,14 @@ void saveRoom()
 			rooms[i].state);
 	}
 	fclose(fp);
-	printf("·¿¼äÊı¾İ±£´æ³É¹¦\n");
+	printf("æˆ¿é—´æ•°æ®ä¿å­˜æˆåŠŸ\n");
 }
 void loadRoom()
 {
 	FILE* fp = fopen("room.txt", "r");
 	if (fp == NULL)
 	{
-		printf("ÔİÎŞÀúÊ·Êı¾İ\n");
+		printf("æš‚æ— å†å²æ•°æ®\n");
 		return;
 	}
 	for (int i = 0; i < max; i++)
@@ -210,7 +210,7 @@ void loadRoom()
 			&rooms[i].state);
 	}
 	fclose(fp);
-	printf("·¿¼äÊı¾İ¶ÁÈ¡³É¹¦\n");
+	printf("æˆ¿é—´æ•°æ®è¯»å–æˆåŠŸ\n");
 }
 void saveGuest()
 {
@@ -218,7 +218,7 @@ void saveGuest()
 
 	if (fp == NULL)
 	{
-		printf("¿Í»§ÎÄ¼ş´ò¿ªÊ§°Ü\n");
+		printf("å®¢æˆ·æ–‡ä»¶æ‰“å¼€å¤±è´¥\n");
 		return;
 	}
 
@@ -234,14 +234,14 @@ void saveGuest()
 		}
 	}
 	fclose(fp);
-	printf("¿Í»§Êı¾İ±£´æ³É¹¦\n");
+	printf("å®¢æˆ·æ•°æ®ä¿å­˜æˆåŠŸ\n");
 }
 void loadGuest()
 {
 	FILE* fp = fopen("guest.txt", "r");
 	if (fp == NULL)
 	{
-		printf("ÔİÎŞ¿Í»§Êı¾İ\n");
+		printf("æš‚æ— å®¢æˆ·æ•°æ®\n");
 		return;
 	}
 	int i = 0;
@@ -254,7 +254,7 @@ void loadGuest()
 		;
 	}
 	fclose(fp);
-	printf("¿Í»§Êı¾İ¶ÁÈ¡³É¹¦\n");
+	printf("å®¢æˆ·æ•°æ®è¯»å–æˆåŠŸ\n");
 }
 int main()
 {
@@ -266,36 +266,36 @@ int main()
 		int x = print();
 		switch (x)
 		{
-		case 1://²é¿´ËùÓĞ·¿¼ä
+		case 1://æŸ¥çœ‹æ‰€æœ‰æˆ¿é—´
 			checkrooms();
 			break;
-		case 2://°ìÀíÈë×¡
+		case 2://åŠç†å…¥ä½
 			check_in();
 			break;
-		case 3://°ìÀíÍË·¿
+		case 3://åŠç†é€€æˆ¿
 			checkout();
 			break;
-		case 4://²éÑ¯·¿¼äĞÅÏ¢
+		case 4://æŸ¥è¯¢æˆ¿é—´ä¿¡æ¯
 			check_information();
 			break;
-		case 5://²éÑ¯¿Í»§ĞÅÏ¢
+		case 5://æŸ¥è¯¢å®¢æˆ·ä¿¡æ¯
 			check_guest();
 			break;
-		case 6://ÏÔÊ¾¿ÕÏĞ·¿¼ä
+		case 6://æ˜¾ç¤ºç©ºé—²æˆ¿é—´
 			displayroom();
 			break;
-		case 7://±£´æÊı¾İ
+		case 7://ä¿å­˜æ•°æ®
 			saveRoom();
 			saveGuest();
-			printf("±£´æÍê³É");
+			printf("ä¿å­˜å®Œæˆ");
 			break;
-		case 8://ÍË³öÏµÍ³
+		case 8://é€€å‡ºç³»ç»Ÿ
 			saveRoom();
 			saveGuest();
-			printf("Ê¹ÓÃÍê³É£¬»¶Ó­ÏÂ´ÎÊ¹ÓÃ\n");
+			printf("ä½¿ç”¨å®Œæˆï¼Œæ¬¢è¿ä¸‹æ¬¡ä½¿ç”¨\n");
 			return 0;
 		default:
-			printf("ÊäÈë´íÎó\n");
+			printf("è¾“å…¥é”™è¯¯\n");
 		}
 	}
 	return 0;
