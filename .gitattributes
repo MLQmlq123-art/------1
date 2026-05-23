@@ -1,2 +1,14 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# 强制C语言源码用UTF-8编码，换行符用Windows格式
+*.c text eol=crlf encoding=utf-8
+*.h text eol=crlf encoding=utf-8
+
+# 文本文件统一处理
+*.txt text eol=crlf
+*.md text eol=crlf
+
+# 二进制文件不处理
+*.png binary
+*.jpg binary
+*.exe binary
