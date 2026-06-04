@@ -2,7 +2,54 @@
 #include<stdio.h>
 #include<string.h>
 #define max 20
-int print()//菜单
+
+int sys_()//系统选择
+{
+	int x = 0;
+	int y = 0;
+	printf("1.管理员.密码12345\n");
+	printf("2.用户.密码.123456\n");
+    sy:
+ 	scanf("%d", &x);
+	if (x == 1)
+	{
+		printf("请输入密码:\n");
+		sone:
+		scanf("%d", &y);
+		if (y == 12345)
+		{
+			return x;
+		}
+		else
+		{
+			printf("输入错误，请再次输入:\n");
+			goto sone;
+		}
+	}
+	else if (x == 2)
+	{
+		printf("请输入密码\n");
+		sseconde:
+		scanf("%d", &y);
+		if (y == 123456)
+		{
+			return x;
+		}
+		else
+		{
+			printf("输入错误，请再次输入:\n");
+			goto sseconde;
+		}
+	}
+	else
+	{
+		printf("输入错误\n");
+		printf("请再次输入\n");
+		goto sy;
+	}
+}
+
+int printone()//菜单:管理者
 {
 	int x;
 	printf("1.查看所有房间\n");
@@ -13,6 +60,17 @@ int print()//菜单
 	printf("6.显示空闲房间\n");
 	printf("7.保存数据\n");
 	printf("8.退出系统\n");
+	scanf("%d", &x);
+	return x;
+}
+int printsecond()//菜单:用户
+{
+	int x;
+	printf("1.办理入住\n");
+	printf("2.办理退房\n");
+	printf("3.查询房间信息\n");
+	printf("4.显示空闲房间\n");
+	printf("5.退出\n");
 	scanf("%d", &x);
 	return x;
 }
@@ -73,7 +131,7 @@ int check_in()//办理入住
 {
 	int i,j;
     input_room:
-	printf("请输入入住房间号:");
+	printf("请输入入住房间号:\n");
 	scanf("%d", &i);
 	i -= 101;
 	if (rooms[i].state == 0 && i < max && i >= 0)
@@ -110,10 +168,10 @@ void checkout()//退房
 	int x;
 	char s[50];
     one_:
-	printf("请输入要退房间号:");
+	printf("请输入要退房间号:\n");
 	scanf("%d", &x);
 	x -= 101;
-	printf("请输入登记人名字:");
+	printf("请输入登记人名字:\n");
 	scanf("%s", s);
 	if (rooms[x].state == 1 && strcmp(guest[x].name, s) == 0&&(x< max&&x>= 0))
 	{
@@ -128,11 +186,11 @@ void checkout()//退房
 		goto one_;
 	}
 }
-void check_information()//查看房间信息
+void check_information()//查看房间信息:管理者
 {
 	int x;
     next_:
-	printf("请输入要查看房间号:");
+	printf("请输入要查看房间号:\n");
 	scanf("%d", &x);
 	x -= 101;
 	if (x < max && x >= 0)
@@ -146,11 +204,24 @@ void check_information()//查看房间信息
 		goto next_;
 	}
 }
-void check_guest()//查看客户信息
+void check_use_user()//查看房间信息:用户
+{
+	char name_[20];
+	int x;
+	scanf("%d %s", &x, &name_);
+	x -= 101;
+	if (strcmp(name_, guest[x].name) == 0)
+	{
+		printf("输入正确\n");
+		printf("房间号:%d\n 房间类型:%d\n 房间价格:%d\n", rooms[x].id, rooms[x].type, rooms[x].price);
+		transfor(rooms[x].state);
+	}
+}
+void check_guest()//查看用户信息：管理者
 {
 	int x;
     next_:
-	printf("请输入房间号:");
+	printf("请输入房间号:\n");
 	scanf("%d", &x);
 	x -= 101;
 	if (x < max && x >= 0)
@@ -258,44 +329,78 @@ void loadGuest()
 }
 int main()
 {
+	printf("hello");
 	intirooms();
 	loadRoom();
 	loadGuest();
-	while (1)
+	int asd = sys_();
+	switch (asd)
 	{
-		int x = print();
-		switch (x)
+	case 1:
+		while (1)
 		{
-		case 1://查看所有房间
-			checkrooms();
-			break;
-		case 2://办理入住
-			check_in();
-			break;
-		case 3://办理退房
-			checkout();
-			break;
-		case 4://查询房间信息
-			check_information();
-			break;
-		case 5://查询客户信息
-			check_guest();
-			break;
-		case 6://显示空闲房间
-			displayroom();
-			break;
-		case 7://保存数据
-			saveRoom();
-			saveGuest();
-			printf("保存完成");
-			break;
-		case 8://退出系统
-			saveRoom();
-			saveGuest();
-			printf("使用完成，欢迎下次使用\n");
-			return 0;
-		default:
-			printf("输入错误\n");
+			int x = printone();
+			switch (x)
+			{
+			case 1://查看所有房间
+				checkrooms();
+				break;
+			case 2://办理入住
+				check_in();
+				break;
+			case 3://办理退房
+				checkout();
+				break;
+			case 4://查询房间信息
+				check_information();
+				break;
+			case 5://查询客户信息
+				check_guest();
+				break;
+			case 6://显示空闲房间
+				displayroom();
+				break;
+			case 7://保存数据
+				saveRoom();
+				saveGuest();
+				printf("保存完成\n");
+				break;
+			case 8://退出系统
+				saveRoom();
+				saveGuest();
+				printf("使用完成，欢迎下次使用\n");
+				return 0;
+			default:
+				printf("输入错误\n");
+			}
+		}
+		break;
+	case 2:
+		while (1)
+		{
+			int x = printsecond();
+			switch (x)
+			{
+			case 1:
+				check_in();//办理入住
+				break;
+			case 2:
+				checkout();//办理退房
+				break;
+			case 3:
+				check_use_user();//查看房间信息
+			    break;
+			case 4:
+				displayroom();//显示空闲房间
+				break;
+			case 5:
+				saveRoom();//退出
+				saveGuest();
+				printf("已保存\n");
+				return 0;
+			default:
+				printf("输入错误\n");
+			}
 		}
 	}
 	return 0;
